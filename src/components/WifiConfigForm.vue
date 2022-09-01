@@ -36,7 +36,7 @@ export default {
 </script>
 
 <template>
-  <form @submit="generateQrCodeData">
+  <form @submit.prevent="generateQrCodeData">
     <div class="form-group">
       <select v-model="wifiConfig.type">
         <option disabled value="">Select your encryption type</option>

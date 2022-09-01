@@ -4,6 +4,16 @@ import WifiConfigForm from '@/components/WifiConfigForm.vue'
 export default {
   components: {
     WifiConfigForm
+  },
+  data() {
+    return {
+      qrCodeData: '',
+    }
+  },
+  methods: {
+    updateQrCodeData(qrCodeData) {
+      this.$data.qrCodeData = qrCodeData;
+    }
   }
 }
 </script>
@@ -12,6 +22,8 @@ export default {
   <main>
     <h1>Wifi QR-code generator</h1>
 
-    <WifiConfigForm />
+    <WifiConfigForm @generate-qr-code="updateQrCodeData" />
+
+    <p>{{ qrCodeData }}</p>
   </main>
 </template>
