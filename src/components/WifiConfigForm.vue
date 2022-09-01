@@ -3,9 +3,9 @@ export default {
   data() {
     return {
       authTypes: [
-        { name: 'No password', value: 'nopass' },
-        { name: 'WEP', value: 'WEP' },
         { name: 'WPA / WPA2', value: 'WPA' },
+        { name: 'WEP', value: 'WEP' },
+        { name: 'No password', value: 'nopass' },
       ],
       wifiConfig: {
         type: '',
@@ -51,7 +51,7 @@ export default {
     </div>
 
     <div class="mb-6">
-      <label for="ssid" class="block text-sm font-medium text-gray-700 mb-2">Wifi name</label>
+      <label for="ssid" class="block text-sm font-medium text-gray-700 mb-2">WiFi name</label>
 
       <input id="ssid" type="text" v-model="wifiConfig.ssid" required class="block w-full rounded-md shadow-sm py-3 px-6 sm:text-sm">
     </div>
@@ -78,6 +78,6 @@ export default {
       </div>
     </div>
 
-    <button class="block bg-indigo-500 text-white rounded-md shadow-sm py-3 px-6 sm:text-sm">Generate QR-code</button>
+    <button class="block bg-indigo-500 text-white rounded-md shadow-sm py-3 px-6 sm:text-sm">Generate QR ode</button>
   </form>
 </template>

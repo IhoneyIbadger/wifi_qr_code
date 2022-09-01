@@ -72,9 +72,9 @@ export default {
             <div class="flex justify-center">
               <img src="${this.$data.previewUrl}" class="h-80 w-80 rounded-md">
             </div>
-            <span class="block w-80 text-xl text-center break-words">Wifi Name: ${this.$props.qrCodeData.name}</span>
+            <span class="block w-80 text-xl text-center break-words">Wifi name: ${this.$props.qrCodeData.name}</span>
             <span class="block w-80 text-center mb-4">Scan with your phone to connect!</span>
-            <span class="block w-80 text-sm text-center">Generated on: <a href="https://wifi2qr.com">wifi2qr.com</a></span>
+            <span class="block w-80 text-sm text-center">Generated on <a href="https://wifi2qr.com">wifi2qr.com</a></span>
           </div>
         </div>
       `;
@@ -88,10 +88,10 @@ export default {
     <div class="flex flex-col bg-indigo-500 shadow-sm rounded-lg p-4 min-w-0">
       <img v-if="previewUrl" :src="previewUrl" class="max-w-64 rounded-md mb-4">
       <div v-else class="flex justify-center items-center text-center max-w-64 aspect-square rounded-md bg-white text-xl text-gray-700 p-4">
-        Fill in your wifi data to generate a QR-code.
+        Fill in your WiFi data to generate a QR code.
       </div>
 
-      <span v-if="qrCodeData.name" class="text-xl text-white text-center max-w-64 break-words">Wifi Name: {{qrCodeData.name}}</span>
+      <span v-if="qrCodeData.name" class="text-xl text-white text-center max-w-64 break-words">Wifi name: {{qrCodeData.name}}</span>
     </div>
 
     <div v-if="previewUrl" class="flex flex-col justify-center grow-1">
