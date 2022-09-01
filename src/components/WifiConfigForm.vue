@@ -13,12 +13,30 @@ export default {
         password: '',
       },
     }
-  }
+  },
+  methods: {
+    generateQrCodeData() {
+      const wifiConfig = this.$data.wifiConfig;
+      let data = 'WIFI:';
+
+      data += `T:${wifiConfig.type};`;
+      data += `S:${this.escapeForQrCode(wifiConfig.ssid)};`;
+
+      if(wifiConfig.type !== 'nopass') {
+        data += `P:${this.escapeForQrCode(wifiConfig.ssid)};`;
+      }
+
+      this.$emit('generate-qr-code', data);
+    },
+    escapeForQrCode(string) {
+      return string.replace(/\\;,":/g, match => `\\${match}`);
+    }
+  },
 }
 </script>
 
 <template>
-  <form>
+  <form @submit="generateQrCodeData">
     <div class="form-group">
       <select v-model="wifiConfig.type">
         <option disabled value="">Select your encryption type</option>
@@ -33,5 +51,7 @@ export default {
     <div class="form-group">
       <input v-if="wifiConfig.type !== 'nopass'" type="password" v-model="wifiConfig.password">
     </div>
+
+    <button>Generate QR-code</button>
   </form>
 </template>
