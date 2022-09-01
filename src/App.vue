@@ -1,11 +1,10 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
+import HeaderNavigation from '@/components/HeaderNavigation.vue'
 </script>
 
 <template>
-  <header>
-    
-  </header>
+  <HeaderNavigation />
 
   <RouterView />
 </template>

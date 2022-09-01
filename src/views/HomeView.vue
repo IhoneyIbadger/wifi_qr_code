@@ -9,7 +9,10 @@ export default {
   },
   data() {
     return {
-      qrCodeData: '',
+      qrCodeData: {
+        name: '',
+        data: '',
+      },
     }
   },
   methods: {
@@ -21,11 +24,13 @@ export default {
 </script>
 
 <template>
-  <main>
-    <h1>Wifi QR-code generator</h1>
+  <main class="max-w-screen-xl mx-auto px-4 py-8 md:py-10">
+    <h1 class="text-4xl tracking-tight font-bold text-black mb-6">Wifi QR-code generator</h1>
 
-    <WifiConfigForm @generate-qr-code="updateQrCodeData" />
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <WifiConfigForm @generate-qr-code="updateQrCodeData" />
 
-    <QrCodePreview :qrCodeData="qrCodeData" />
+      <QrCodePreview :qrCodeData="qrCodeData" />
+    </div>
   </main>
 </template>

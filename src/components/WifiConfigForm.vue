@@ -17,16 +17,19 @@ export default {
   methods: {
     generateQrCodeData() {
       const wifiConfig = this.$data.wifiConfig;
-      let data = 'WIFI:';
+      let qrCodeData = 'WIFI:';
 
-      data += `T:${wifiConfig.type};`;
-      data += `S:${this.escapeForQrCode(wifiConfig.ssid)};`;
+      qrCodeData += `T:${wifiConfig.type};`;
+      qrCodeData += `S:${this.escapeForQrCode(wifiConfig.ssid)};`;
 
       if(wifiConfig.type !== 'nopass') {
-        data += `P:${this.escapeForQrCode(wifiConfig.password)};`;
+        qrCodeData += `P:${this.escapeForQrCode(wifiConfig.password)};`;
       }
 
-      this.$emit('generate-qr-code', data);
+      this.$emit('generate-qr-code', {
+        name: wifiConfig.ssid,
+        data: qrCodeData,
+      });
     },
     escapeForQrCode(string) {
       return string.replace(/[\\;,":]/g, match => `\\${match}`);
@@ -37,21 +40,27 @@ export default {
 
 <template>
   <form @submit.prevent="generateQrCodeData">
-    <div class="form-group">
-      <select v-model="wifiConfig.type" required>
+    <div class="mb-6">
+      <label for="type" class="block text-sm font-medium text-gray-700 mb-2">Encryption type</label>
+
+      <select id="type" v-model="wifiConfig.type" required class="block w-full rounded-md shadow-sm py-3 px-6 sm:text-sm">
         <option disabled value="">Select your encryption type</option>
         <option v-for="authType in authTypes" :key="authType.value" :value="authType.value">{{ authType.name }}</option>
       </select>
     </div>
 
-    <div class="form-group">
-      <input type="text" v-model="wifiConfig.ssid" required>
+    <div class="mb-6">
+      <label for="ssid" class="block text-sm font-medium text-gray-700 mb-2">Wifi name / SSID</label>
+
+      <input id="ssid" type="text" v-model="wifiConfig.ssid" required class="block w-full rounded-md shadow-sm py-3 px-6 sm:text-sm">
     </div>
 
-    <div class="form-group">
-      <input v-if="wifiConfig.type !== 'nopass'" type="password" v-model="wifiConfig.password" required>
+    <div v-if="wifiConfig.type !== 'nopass'" class="mb-6">
+      <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+
+      <input id="password" type="password" v-model="wifiConfig.password" required class="block w-full rounded-md shadow-sm py-3 px-6 sm:text-sm">
     </div>
 
-    <button>Generate QR-code</button>
+    <button class="block bg-indigo-500 text-white rounded-md shadow-sm py-3 px-6 sm:text-sm">Generate QR-code</button>
   </form>
 </template>
