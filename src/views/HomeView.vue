@@ -13,7 +13,7 @@ export default {
   methods: {
     updateQrCodeData(qrCodeData) {
       this.$data.qrCodeData = qrCodeData;
-    }
+    },
   }
 }
 </script>
