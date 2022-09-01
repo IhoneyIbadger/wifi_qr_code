@@ -1,0 +1,37 @@
+<script>
+export default {
+  data() {
+    return {
+      authTypes: [
+        { name: 'No password', value: 'nopass' },
+        { name: 'WEP', value: 'WEP' },
+        { name: 'WPA / WPA2', value: 'WPA' },
+      ],
+      wifiConfig: {
+        type: '',
+        ssid: '',
+        password: '',
+      },
+    }
+  }
+}
+</script>
+
+<template>
+  <form>
+    <div class="form-group">
+      <select v-model="wifiConfig.type">
+        <option disabled value="">Select your encryption type</option>
+        <option v-for="authType in authTypes" :key="authType.value" :value="authType.value">{{ authType.name }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <input type="text" v-model="wifiConfig.ssid">
+    </div>
+
+    <div class="form-group">
+      <input v-if="wifiConfig.type !== 'nopass'" type="password" v-model="wifiConfig.password">
+    </div>
+  </form>
+</template>
