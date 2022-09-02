@@ -44,8 +44,8 @@ export default {
 
       <p>
         To connect to a WiFi network, you usually have to manually select a network and then enter a complicated password.
-        With a QR code, this is done automatically: simply scan the code with your phone's camera and the device will be connected to the network.
-        With us you can easily and free of charge create a QR code for your own WiFi network, which you can show for example to visitors at your home, so you don't have to look up the WiFi password every time.
+        With a QR Code, this is done automatically: simply scan the code with your phone's camera and the device will be connected to the network.
+        With us you can easily and free of charge create a QR Code for your own WiFi network, which you can show for example to visitors at your home, so you don't have to look up the WiFi password every time.
         You don't have to worry about the code expiring either, as long as you don't change the WiFi password.
         In addition, the generation runs locally in your browser, so your password will not be passed on.
       </p>
@@ -58,7 +58,7 @@ export default {
         <li>Select the encryption type of your network. Most routers use WPA / WPA 2, but some older devices still use WEP.</li>
         <li>Enter the exact name of your WiFi.</li>
         <li>If your device has a password, enter it (again, make sure it is spelled correctly).</li>
-        <li>Generate the QR code and download it in the desired format.</li>
+        <li>Generate the QR Code and download it in the desired format.</li>
         <li>Never worry about entering the wrong password again</li>
       </ol>
     </section>
