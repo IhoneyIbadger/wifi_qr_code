@@ -1,6 +1,7 @@
 <script>
 import QRCode from 'qrcode';
-import html2pdf from 'html2pdf.js';
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
 
 export default {
   props: {
@@ -23,38 +24,53 @@ export default {
     },
   },
   methods: {
-    downloadPdf() {
-      html2pdf()
-        .set({
-          margin: [20, 0],
-          filename: 'Wifi-QR-code.pdf',
-        })
-        .from(this.qrCodeTemplate(), 'string')
-        .toPdf()
-        .save();
+    async downloadPdf() {
+      const div = this.qrCodeTemplate();
+      const hidden = this.createHiddenElement();
+      
+      hidden.append(div);
+
+      const canvas = await html2canvas(div);
+      const doc = new jsPDF();
+      
+      doc.addImage(canvas.toDataURL(), 'PNG', 40, 20, 130, canvas.height / canvas.width * 130);
+      doc.save('Wifi-QR-code.pdf');
+
+      hidden.remove();
     },
     async downloadImage() {
-      const dataUrl = await html2pdf()
-        .from(this.qrCodeTemplate(), 'string')
-        .outputImg('dataurlstring');
+      const div = this.qrCodeTemplate();
+      const hidden = this.createHiddenElement();
+      
+      hidden.append(div);
+
+      const canvas = await html2canvas(div);
+
+      hidden.remove();
       
       const link = document.createElement('a');
-      link.download = 'Wifi-QR-code.jpg';
-      link.href = dataUrl;
+      link.download = 'Wifi-QR-code.png';
+      link.target = '_blank';
+      link.href = canvas.toDataURL();
 
       document.body.appendChild(link);
       link.click();
-      document.body.removeChild(link);
+      link.remove();
     },
     async print() {
-      const blob = await html2pdf()
-        .set({
-          margin: [20, 0],
-          filename: 'Wifi-QR-code.pdf',
-        })
-        .from(this.qrCodeTemplate(), 'string')
-        .outputPdf('blob');
+      const div = this.qrCodeTemplate();
+      const hidden = this.createHiddenElement();
+      
+      hidden.append(div);
 
+      const canvas = await html2canvas(div);
+      const doc = new jsPDF();
+      
+      doc.addImage(canvas.toDataURL(), 'PNG', 40, 20, 130, canvas.height / canvas.width * 130);
+      const blob = doc.output('blob');
+
+      hidden.remove();
+      
       const url = URL.createObjectURL(blob);
       
       const link = document.createElement('a');
@@ -63,22 +79,37 @@ export default {
 
       document.body.appendChild(link);
       link.click();
-      document.body.removeChild(link);
+      link.remove();
     },
     qrCodeTemplate() {
-      return `
-        <div class="flex justify-center text-white">
-          <div class="flex flex-col bg-indigo-500 shadow-sm rounded-lg p-6">
-            <div class="flex justify-center">
-              <img src="${this.$data.previewUrl}" class="h-80 w-80 rounded-md">
-            </div>
-            <span class="block w-80 text-xl text-center break-words">Wifi name: ${this.$props.qrCodeData.name}</span>
-            <span class="block w-80 text-center mb-4">Scan with your phone to connect!</span>
-            <span class="block w-80 text-sm text-center">Generated on <a href="https://wifi2qr.com">wifi2qr.com</a></span>
+      const html = `
+        <div class="flex flex-col bg-indigo-500 shadow-sm rounded-lg p-6 text-white">
+          <div class="flex justify-center">
+            <img src="${this.$data.previewUrl}" class="h-80 w-80 rounded-md">
           </div>
+          <span class="block w-80 text-xl text-center break-words">Wifi name: ${this.$props.qrCodeData.name}</span>
+          <span class="block w-80 text-center mb-4">Scan with your phone to connect!</span>
+          <span class="block w-80 text-sm text-center">Generated on <a href="https://wifi2qr.com">wifi2qr.com</a></span>
         </div>
-      `;
-    }
+      `.trim();
+
+      const template = document.createElement('template');
+      template.innerHTML = html;
+
+      return template.content.firstChild;
+    },
+    createHiddenElement() {
+      const hidden = document.createElement('div');
+      
+      hidden.style.position = 'fixed';
+      hidden.style.top = '-9999px';
+      hidden.style.left = '-9999px';
+      hidden.style.width = '23rem';
+
+      document.body.append(hidden);
+
+      return hidden;
+    },
   }
 }
 </script>

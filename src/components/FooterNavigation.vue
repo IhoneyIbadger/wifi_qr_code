@@ -1,3 +1,7 @@
+<script setup>
+import { RouterLink } from 'vue-router'
+</script>
+
 <template>
   <footer class="max-w-screen-xl w-full mx-auto mt-auto px-4 flex justify-between items-center h-16 text-gray-500">
     <span class="italic text-xs">"QR Code" is a registered trademark of DENSO WAVE INCORPORATED</span>

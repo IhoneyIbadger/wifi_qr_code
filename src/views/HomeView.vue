@@ -1,12 +1,5 @@
 <script>
-import WifiConfigForm from '@/components/WifiConfigForm.vue'
-import QrCodePreview from '@/components/QrCodePreview.vue'
-
 export default {
-  components: {
-    WifiConfigForm,
-    QrCodePreview,
-  },
   data() {
     return {
       qrCodeData: {
