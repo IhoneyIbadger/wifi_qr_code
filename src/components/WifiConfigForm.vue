@@ -29,6 +29,7 @@ export default {
 
       this.$emit('generate-qr-code', {
         name: wifiConfig.ssid,
+        password: wifiConfig.password,
         data: qrCodeData,
       });
     },
@@ -78,6 +79,6 @@ export default {
       </div>
     </div>
 
-    <button class="block bg-indigo-500 text-white rounded-md shadow-sm py-3 px-6 sm:text-sm">Generate QR code</button>
+    <button class="block bg-indigo-500 text-white rounded-md shadow-sm py-3 px-6 sm:text-sm">Generate QR Code</button>
   </form>
 </template>

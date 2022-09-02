@@ -25,7 +25,7 @@ export default {
     </section>
 
     <section class="max-w-screen-xl w-full mx-auto p-4 md:py-5">
-      <div class="bg-gray-200 rounded-lg p-8 grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-8">
+      <div class="bg-gray-200 rounded-lg p-8 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8">
         <WifiConfigForm @generate-qr-code="updateQrCodeData" />
 
         <QrCodePreview :qrCodeData="qrCodeData" />
@@ -52,7 +52,7 @@ export default {
         <li>Enter the exact name of your WiFi.</li>
         <li>If your device has a password, enter it (again, make sure it is spelled correctly).</li>
         <li>Generate the QR Code and download it in the desired format.</li>
-        <li>Never worry about entering the wrong password again</li>
+        <li>Never worry about entering the wrong password again.</li>
       </ol>
     </section>
   </main>
