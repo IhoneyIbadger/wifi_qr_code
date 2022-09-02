@@ -78,6 +78,6 @@ export default {
       </div>
     </div>
 
-    <button class="block bg-indigo-500 text-white rounded-md shadow-sm py-3 px-6 sm:text-sm">Generate QR ode</button>
+    <button class="block bg-indigo-500 text-white rounded-md shadow-sm py-3 px-6 sm:text-sm">Generate QR code</button>
   </form>
 </template>

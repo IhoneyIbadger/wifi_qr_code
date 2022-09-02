@@ -25,13 +25,13 @@ export default {
 
 <template>
   <main class="py-8 md:py-10">
-    <section class="max-w-prose mx-auto p-4 md:py-5 text-center">
-      <h1 class="text-5xl tracking-tight font-bold text-black mb-2">WiFi QR Code Generator</h1>
+    <section class="max-w-prose w-full mx-auto p-4 md:py-5 text-center">
+      <h1 class="text-5xl tracking-tight font-bold text-indigo-500 mb-2">WiFi QR Code Generator</h1>
 
       <p class="text-2xl tracking-tight font-bold text-black">Generate a QR Code for Your WiFi</p>
     </section>
 
-    <section class="max-w-screen-xl mx-auto p-4 md:py-5">
+    <section class="max-w-screen-xl w-full mx-auto p-4 md:py-5">
       <div class="bg-gray-200 rounded-lg p-8 grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-8">
         <WifiConfigForm @generate-qr-code="updateQrCodeData" />
 
@@ -39,7 +39,7 @@ export default {
       </div>
     </section>
 
-    <section class="max-w-prose mx-auto p-4 md:py-5">
+    <section class="max-w-prose w-full mx-auto p-4 md:py-5">
       <h2 class="text-3xl tracking-tight font-bold text-black mb-3">Why Should I Generate a QR Code for My WiFi?</h2>
 
       <p>
@@ -51,7 +51,7 @@ export default {
       </p>
     </section>
 
-    <section class="max-w-prose mx-auto p-4 md:py-5">
+    <section class="max-w-prose w-full mx-auto p-4 md:py-5">
       <h2 class="text-3xl tracking-tight font-bold text-black mb-3">How Do I Generate a WiFi QR Code?</h2>
 
       <ol class="list-decimal pl-4">
