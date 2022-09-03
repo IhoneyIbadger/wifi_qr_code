@@ -48,7 +48,7 @@ export default {
       const doc = new jsPDF();
       
       doc.addImage(canvas.toDataURL(), 'PNG', 50, 20, 110, canvas.height / canvas.width * 110);
-      doc.save('Wifi-QR-code.pdf');
+      doc.save('Wifi-QR-Code.pdf');
 
       hidden.remove();
     },
@@ -63,7 +63,7 @@ export default {
       hidden.remove();
       
       const link = document.createElement('a');
-      link.download = 'Wifi-QR-code.png';
+      link.download = 'Wifi-QR-Code.png';
       link.target = '_blank';
       link.href = canvas.toDataURL();
 
