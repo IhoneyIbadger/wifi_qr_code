@@ -207,7 +207,7 @@ export default {
         <div class="mb-6">
           <label for="color" class="block text-sm font-medium text-gray-700 mb-2">Color</label>
 
-          <select id="color" v-model="design.color" required class="block w-full rounded-md shadow-sm py-3 px-6 sm:text-sm">
+          <select id="color" v-model="design.color" required class="block w-full bg-white rounded-md shadow-sm py-3 px-6 sm:text-sm focus:ring-2 focus:ring-indigo-500 outline-0">
             <option v-for="color in colors" :key="color.value" :value="color.value">{{ color.name }}</option>
           </select>
         </div>
