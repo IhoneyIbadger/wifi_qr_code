@@ -1,5 +1,22 @@
 <script>
+import { useHead } from '@vueuse/head'
+
 export default {
+  setup() {
+    useHead({
+      title: 'Home | WiFi QR Code Generator',
+      meta: [
+        {
+          name: 'description',
+          content: 'Generate a QR Code for your WiFi and never worry about entering the wrong password again.',
+        },
+        {
+          name: 'keywords',
+          content: 'QR Code, WiFi, generator, network, password',
+        },
+      ],
+    });
+  },
   data() {
     return {
       qrCodeData: {
@@ -12,7 +29,7 @@ export default {
     updateQrCodeData(qrCodeData) {
       this.$data.qrCodeData = qrCodeData;
     },
-  }
+  },
 }
 </script>
 
