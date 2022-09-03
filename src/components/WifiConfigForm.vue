@@ -29,7 +29,7 @@ export default {
 
       this.$emit('generate-qr-code', {
         name: wifiConfig.ssid,
-        password: wifiConfig.password,
+        password: wifiConfig.type === 'nopass' ? '' : wifiConfig.password,
         data: qrCodeData,
       });
     },

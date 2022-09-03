@@ -101,7 +101,7 @@ export default {
         name = `
           <div class="w-80 mt-4">
             <span class="block text-sm">WiFi name</span>
-            <span class="block text-xl break-words">${this.$props.qrCodeData.name}</span>
+            <span class="block text-xl break-words">${this.escapeHtml(this.$props.qrCodeData.name)}</span>
           </div>
         `;
       }
@@ -111,7 +111,7 @@ export default {
         password = `
           <div class="w-80 mt-4">
             <span class="block text-sm">Password</span>
-            <span class="block text-xl break-words">${this.$props.qrCodeData.password}</span>
+            <span class="block text-xl break-words">${this.escapeHtml(this.$props.qrCodeData.password)}</span>
           </div>
         `;
       }
@@ -145,6 +145,13 @@ export default {
 
       return hidden;
     },
+    escapeHtml(string) {
+      const text = document.createTextNode(string);
+      const p = document.createElement('p');
+      p.appendChild(text);
+      
+      return p.innerHTML;
+    },
   }
 }
 </script>
@@ -163,7 +170,7 @@ export default {
           <span class="block text-xl break-words">{{qrCodeData.name}}</span>
         </div>
 
-        <div v-if="previewUrl && design.passwordVisible" class="max-w-64 mt-4">
+        <div v-if="previewUrl && design.passwordVisible && qrCodeData.password" class="max-w-64 mt-4">
           <span class="block text-sm">Password</span>
           <span class="block text-xl break-words">{{qrCodeData.password}}</span>
         </div>
@@ -210,7 +217,7 @@ export default {
           <label for="name-visible" class="text-sm font-medium text-gray-700">WiFi name visible</label>
         </div>
 
-        <div class="flex items-center">
+        <div v-if="qrCodeData.password" class="flex items-center">
           <input id="password-visible" type="checkbox" v-model="design.passwordVisible" class="mr-2">
           <label for="password-visible" class="text-sm font-medium text-gray-700">Password visible</label>
         </div>
